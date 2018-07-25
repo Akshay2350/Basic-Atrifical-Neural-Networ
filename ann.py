@@ -90,6 +90,7 @@ def build_classifier():
     classifier.add(Dense(output_dim = 1, init = 'uniform', activation = 'sigmoid'))
     classifier.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
     return classifier
-classifier = KerasClassifier(build_fn = build_classifier, batch_size=10, epochs=100)
+classifier = KerasClassifier(build_fn = build_classifier, batch_size=10, epochs=100) 
+#Add n_jobs if you want to use all of your cores. I would rather prefer to keep it as multicore process.
 accuracies = cross_val_score(estimator = classifier, X = X_train, y = y_train, cv = 10 )
 mean = accuracies.mean()    
